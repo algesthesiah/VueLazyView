@@ -20,17 +20,7 @@ module.exports = {
             loader: 'css-loader',
             options: { importLoaders: 1 },
           },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                require('autoprefixer')({
-                  browsers: ['> 1%', 'last 2 versions'],
-                }),
-              ],
-            },
-          },
+          'postcss-loader',
         ],
       },
       {
