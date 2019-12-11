@@ -1,9 +1,17 @@
 <template>
   <transition-group tag="div" name="lazy-component" class="main-container">
-    <div v-if="visible" key="component">
-      <slot :loading="loading"></slot>
-    </div>
-    <Skeleton v-else></Skeleton>
+    <template v-if="type === 'if'">
+      <div v-if="visible" key="component">
+        <slot :loading="loading"></slot>
+      </div>
+      <Skeleton v-else></Skeleton>
+    </template>
+    <template v-else>
+      <div v-show="visible" key="component">
+        <slot :loading="loading"></slot>
+      </div>
+      <Skeleton v-if="!visible"></Skeleton>
+    </template>
   </transition-group>
 </template>
 <script>
@@ -11,6 +19,10 @@ import Skeleton from './Skeleton.vue'
 export default {
   name: 'VueLazyView',
   props: {
+    type: {
+      type: String,
+      default: 'if',
+    },
     show: {
       type: Boolean,
       default: false,
