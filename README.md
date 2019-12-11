@@ -5,17 +5,30 @@
 ## Usage
 
 ``` html
-
 <template>
   <div>
     <div class="container">
-      <h2>组件都会在1s后加载</h2>
-      <VueLazyView :timeout="1000">
+      <h2>组件都会在3s后加载</h2>
+      <VueLazyView :show="show">
         <div class="main">我是内容</div>
       </VueLazyView>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      show: false,
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.show = true
+    }, 3000)
+  },
+}
+</script>
 <style lang="scss" scoped>
 .container {
   width: 400px;

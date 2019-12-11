@@ -1,6 +1,6 @@
 <template>
   <transition-group tag="div" name="lazy-component" class="main-container">
-    <div v-if="show" key="component">
+    <div v-if="visible" key="component">
       <slot :loading="loading"></slot>
     </div>
     <Skeleton v-else></Skeleton>
@@ -11,6 +11,10 @@ import Skeleton from './Skeleton.vue'
 export default {
   name: 'VueLazyView',
   props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
     timeout: {
       type: Number,
     },
@@ -27,9 +31,19 @@ export default {
       default: 50,
     },
   },
+  watch: {
+    show: {
+      handler(n) {
+        if (n === true) {
+          this.init()
+        }
+      },
+      immediate: true,
+    },
+  },
   data() {
     return {
-      show: false,
+      visible: false,
       timer: null,
       io: null,
       loading: false,
@@ -47,7 +61,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.timeout) {
+    if (!this.timeout && this.show) {
       // 根据滚动方向来构造视口外边距，用于提前加载
       let rootMargin
       switch (this.direction) {
@@ -96,14 +110,14 @@ export default {
       // 由于函数会在主线程中执行，加载懒加载组件非常耗时，容易卡顿
       // 所以在requestAnimationFrame回调中延后执行
       this.requestAnimationFrame(() => {
-        this.show = true
+        this.visible = true
       })
     },
     requestAnimationFrame(callback) {
       // 防止等待太久没有执行回调
       // 设置最大等待时间
       setTimeout(() => {
-        if (this.show) {
+        if (this.visible) {
           return
         }
         callback()
