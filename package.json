@@ -1,7 +1,7 @@
 {
   "name": "vue2-lazy-view",
   "description": "Vue.js 2.x component level lazy loading solution",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "liulu <541877028@qq.com>",

@@ -107,7 +107,7 @@ export default {
     init() {
       // 此时可以准备加载懒加载组件的资源
       this.loading = true
-      this.emit('initDone', true)
+      this.$emit('initDone', true)
       // 由于函数会在主线程中执行，加载懒加载组件非常耗时，容易卡顿
       // 所以在requestAnimationFrame回调中延后执行
       this.requestAnimationFrame(() => {
