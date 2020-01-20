@@ -126,7 +126,7 @@ export default {
       // 兼容不支持requestAnimationFrame 的浏览器
       return (
         window.requestAnimationFrame ||
-        (callback => setTimeout(callback, 1000 / 60))
+        ((callback) => setTimeout(callback, 1000 / 60))
       )(callback)
     },
   },
