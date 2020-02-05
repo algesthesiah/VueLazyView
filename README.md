@@ -44,8 +44,9 @@ export default {
 
 ```
 
-### DEMO <https://algesthesiahunter.github.io/VueLazyView>
-
+### DEMO
+- 在线网址 https://coding.algesthesiahunter.top/VueLazyView
+- Online site https://algesthesiahunter.github.io/VueLazyView
 ### NPM
 
 ``` bash
